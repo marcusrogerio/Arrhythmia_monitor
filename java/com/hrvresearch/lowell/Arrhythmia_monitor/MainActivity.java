@@ -47,7 +47,6 @@ public class MainActivity extends Activity implements View.OnClickListener, View
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
      getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        //  Settings.System.putInt(this.getContentResolver(), Settings.System.USER_ROTATION, 90);   // kills device
         Settings.System.putInt(this.getContentResolver(), Settings.System.USER_ROTATION, Configuration.ORIENTATION_LANDSCAPE);  // 1 locks to david's prefered orientation for tab4
     //    Settings.System.putInt(this.getContentResolver(), Settings.System.USER_ROTATION, Configuration.ORIENTATION_PORTRAIT);  // 1 locks to watch orientation
      //   Settings.System.ACCELEROMETER_ROTATION    ="Rotation OFF";
@@ -69,8 +68,6 @@ public class MainActivity extends Activity implements View.OnClickListener, View
 
         setContentView(R.layout.singlebignumberview);
 
-
-
          if (!testmode) zm.connect();
         // at this point we are then just waiting for events(data from Zephyr or clicks from interface)
     }
@@ -89,7 +86,7 @@ public class MainActivity extends Activity implements View.OnClickListener, View
             bignumlayout.setBackgroundColor(Color.WHITE);
 
             // or here we flash every time
-                mybignumber.setText("" + (int) (60000 / rr));
+                mybignumber.setText("" + pulserate);
             bignumlayout.setBackgroundColor(Color.BLACK);
 
             lastnumber = rr;
