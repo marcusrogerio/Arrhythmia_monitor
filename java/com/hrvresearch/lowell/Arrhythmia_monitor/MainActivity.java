@@ -144,9 +144,6 @@ public class MainActivity extends Activity implements View.OnClickListener, View
         if (myMode == Mode.GRAPH) {
             dbg("graph mode");
             setContentView(R.layout.graphview);
-   //       FrameLayout fl = (FrameLayout) findViewById(R.id.chartview);
-   //       fl.removeAllViews();
-   //       fl.addView(          );
       if (testmode)  receivenewRR(1000);
         }
         lastmodechangetime = System.currentTimeMillis();
@@ -160,6 +157,7 @@ public class MainActivity extends Activity implements View.OnClickListener, View
         return true;
     }
     public void setTempText(String message) {
+  // this was for flashing a message in the top bar but having it clear later.
      //   ((TextView) findViewById(R.id.messages)).setText("    " + message);
     }
     public void dbg(String s)
