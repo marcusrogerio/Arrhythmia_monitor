@@ -1,7 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:background="#000000"
-    tools:context="com.hrvresearch.lowell.Arrhythmia_monitor.HistoryView"
+    tools:context="com.hrvresearch.lowell.realtime_beattobeat_arrhythmia_monitor.HistoryView"
     android:id="@+id/chartview">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
