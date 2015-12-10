@@ -3,6 +3,11 @@ package com.hrvresearch.realtime_beattobeat_arrhythmia_monitor;
 
 import java.util.LinkedList;
 
+// This class was for data storage during debugging
+
+
+
+
 public class Logque {
     private LinkedList<String> mydata;
 
@@ -13,31 +18,19 @@ public class Logque {
 
     }
 
-
-
     public void add(String s)
     {
         mydata.add(s);
     }
     public String getnext()
     {
-
     return    mydata.getFirst();
-
 
     }
     public int getsize()
     {
-
         return mydata.size();
-
     }
-
-
-
-
-
-
 }
 
 

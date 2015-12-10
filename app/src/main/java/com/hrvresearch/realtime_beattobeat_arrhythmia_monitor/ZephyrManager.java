@@ -15,16 +15,21 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Set;
 
+// library provided by Zephyr  HxM BT Developement kit
+// http://www.zephyr-technology.nl/en/article/54/development-tools.html
+// some of this classes code is worked from their example app.
 import zephyr.android.HxMBT.BTClient;
 import zephyr.android.HxMBT.ZephyrProtocol;
 
 /**
- * Created by Lowell on 3/12/2015.
+ * Created by Lowell Prange on 3/12/2015.
+ *
  */
 public class ZephyrManager {
     BluetoothAdapter adapter = null;
     BTClient _bt;
     MainActivity parent;
+    // set to an invalid number so we know we are starting
     int lastheartbeatnumber = -15;
 
     ZephyrProtocol _protocol;
@@ -32,8 +37,6 @@ public class ZephyrManager {
 
     public ZephyrManager(MainActivity parent) {
         this.parent = parent;
-
-
     }
 
     private void firstConnect()
@@ -46,6 +49,8 @@ public class ZephyrManager {
         // Registering the BTBondReceiver in the application that the status of the receiver has changed to Paired
         IntentFilter filter2 = new IntentFilter("android.bluetooth.device.action.BOND_STATE_CHANGED");
         parent.getApplicationContext().registerReceiver(new BTBondReceiver(), filter2);
+
+        // soon to be replaced by actuall mac address we find connected to the device
         String BhMacID = "00:07:80:9D:8A:E8";
         adapter = BluetoothAdapter.getDefaultAdapter();
         Set<BluetoothDevice> pairedDevices = adapter.getBondedDevices();
@@ -79,16 +84,7 @@ public class ZephyrManager {
     }
 
     public void connect() {
-    //    if (adapter==null)
-      //  {
             firstConnect();
-      //  }
-     //   else
-      //  {
-
-
-
-        //}
 
     }
 
@@ -141,10 +137,6 @@ public class ZephyrManager {
             public void handleMessage(Message msg) {
 
                 int[] mytimestamps = msg.getData().getIntArray("timestamps");
-                for(int i = 0 ; i < mytimestamps.length; i++)
-                {
-                    parent.timestamplog.add("timestamp: " + i + " =" + mytimestamps[i]);
-                }
                 boolean checksumPass = msg.getData().getBoolean("       ");
                 int batterylevel = msg.getData().getInt("BATTERY_CHARGE");
                 int heart_beat_number = msg.getData().getInt("HEART_BEAT_NUMBER");
@@ -160,8 +152,6 @@ public class ZephyrManager {
                 for (int i = newheartbeats-1; i >= 0  ; i--) {
                     int rr = mytimestamps[i] - mytimestamps[i+1];
                     parent.updateChart(rr);
-                parent.timestamplog.add("rr " + rr );
-                    parent.dbg("rr" + rr);
 
                 }
                 parent.dbg("timestamps" + mytimestamps[0] + "," + mytimestamps[1]+ "," + mytimestamps[2]+ "," + mytimestamps[3]+ "," + mytimestamps[4]+ "," + mytimestamps[5]+ "," + mytimestamps[6]+ "," + mytimestamps[7]+ "," + mytimestamps[8]+ "," + mytimestamps[9]

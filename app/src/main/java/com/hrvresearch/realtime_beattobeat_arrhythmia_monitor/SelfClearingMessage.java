@@ -2,8 +2,16 @@ package com.hrvresearch.realtime_beattobeat_arrhythmia_monitor;
 
 
 /**
- * Created by lowell on 6/4/15.
+ * Created by Lowell Prange on 6/4/15.
+ * For Status messages that should only briefly be showed on the screen, like "Starting"
+ *
+ *
  */
+
+
+
+
+
 public class SelfClearingMessage {
     private final MainActivity parent;
     private long myclockstarttime;

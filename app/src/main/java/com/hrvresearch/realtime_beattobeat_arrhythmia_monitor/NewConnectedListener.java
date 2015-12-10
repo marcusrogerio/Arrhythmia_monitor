@@ -7,6 +7,20 @@ import android.os.Message;
 
 import zephyr.android.HxMBT.*;
 
+// Lowell Prange's comment:
+// I think this is sample code from Zephyr.
+// It parses the binary array and packages all the data up into a nicer OOP package.
+// I've got the speed stuff commented out because we have no use for it in our project.
+// If you want to do your own project, I would look at the MainActivity class and modify the
+//  updateChart(int rr) method.  That is where you can start with fun stuff deciding how the
+// heart data rr values are handeled.  RR is milliseconds between beats.  We can derive pulse rate
+// easily from that.  - LP
+
+
+
+
+
+
 public class NewConnectedListener extends ConnectListenerImpl
 {
     private Handler _OldHandler;
@@ -34,8 +48,6 @@ public class NewConnectedListener extends ConnectListenerImpl
         super(handler, null);
         _OldHandler= handler;
         _aNewHandler = _NewHandler;
-
-
 
     }
     public void Connected(ConnectedEvent<BTClient> eventArgs) {
@@ -70,14 +82,9 @@ public class NewConnectedListener extends ConnectListenerImpl
                     int heartnumber = HRSpeedDistPacket.GetHeartBeatNum(DataArray);
 
 
-
                     b1.putInt(BATTERY_CHARGE, battery);
                     b1.putInt(HEART_RATE, heartrate);
                     b1.putInt(HEART_BEAT_NUMBER, heartnumber);
-
-
-
-
 
 
                     Message theMessage = new Message();
