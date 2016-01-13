@@ -1,4 +1,3 @@
-<!-- for the zephyr HX bluetooth dependency -->
 <component name="libraryTable">
   <library name="HxMBT">
     <CLASSES>

@@ -1,0 +1,111 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layoutMode="opticalBounds"
+    android:orientation="vertical"
+    android:elevation="20dp">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mytopbar"
+        android:background="#ff000000"
+        android:weightSum="1">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[Connect]"
+            android:id="@+id/connect"
+            android:enabled="true"
+            android:onClick="startZephyr"
+            android:background="#312f26"
+            android:textColor="#ffffffff"
+            style="@style/Widget.AppCompat.Light.ActionButton"
+            android:clickable="true"
+            android:layout_margin="2dp"
+            android:visibility="visible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HR: "
+            android:id="@+id/heartratelabel"
+            android:layout_gravity="center_vertical"
+            android:paddingStart="40dp"
+            android:textColor="#ffffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="battery"
+            android:id="@+id/batterylabel"
+            android:paddingStart="20dp"
+            android:textColor="#ffffffff" />
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"></TableRow>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.42" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[Write RRs]"
+            android:id="@+id/writeRR"
+            android:gravity="top|right"
+            android:onClick="writeRR"
+            android:nestedScrollingEnabled="true"
+            android:background="#312f26"
+            android:textColor="#ffffffff"
+            android:clickable="true"
+            android:layout_margin="2dp"
+            style="@style/Base.Widget.AppCompat.ButtonBar"
+            android:enabled="true"
+            android:padding="2dp"
+            android:outlineProvider="bounds" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.43" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="      Press Connect To Start"
+            android:id="@+id/messages"
+            android:enabled="true"
+            android:textColor="#ffd937ff"
+            android:textAlignment="gravity"
+            android:gravity="left"
+            android:layout_weight="0.31" />
+
+    </TableRow>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/chartlayout"
+        android:visibility="visible"
+        android:elevation="5dp">
+
+        <TextView
+            android:layout_width="193dp"
+            android:layout_height="91dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/textView"
+            android:layout_gravity="left|bottom"
+            android:elevation="2dp"
+            android:enabled="true"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</LinearLayout>
