@@ -8,7 +8,7 @@ xmlns:tools="http://schemas.android.com/tools"
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:id="@+id/mytopbar"
         android:background="#ff000000"
         android:weightSum="1">
