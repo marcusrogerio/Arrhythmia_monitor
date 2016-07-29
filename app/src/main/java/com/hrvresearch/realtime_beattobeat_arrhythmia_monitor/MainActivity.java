@@ -41,9 +41,11 @@ public class MainActivity extends Activity {
 
     // graph max and min set for use by our elderly patient.
     // TODO make max and min heart rate user configurable
-    // 110 is very low but the app was designed for elderly patients.
-    int MAX_HEART_RATE = 140;
-    int MIN_HEART_RATE = 40;
+    // 110 is very low but the app was designed for elderly patients at rest.
+    int MAX_HEART_RATE = 110;
+    int MIN_HEART_RATE = 30;
+
+    private static final float LABELTEXTSIZE = 30 ;
 
     // user settings to be restored on
     int prexistingRotation ;
@@ -60,7 +62,7 @@ public class MainActivity extends Activity {
     private TimeSeries eseries = null;
     private XYMultipleSeriesDataset mDataset;
     private GraphicalView chartview;
-
+    boolean testmode = false;
 
     ZephyrManager zm;
     private long x;
@@ -80,7 +82,7 @@ public class MainActivity extends Activity {
 
         // Test mode quickly generates a batch of fake points for testing the graph
         // future improvement will move this into a test section
-        boolean testmode = false;
+
 
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -93,22 +95,7 @@ public class MainActivity extends Activity {
         // TODO make this setting of x  DRY in eliminating it multiple places
         x = System.currentTimeMillis();
 
-        // Set screen to landscape mode and try to keep device powered on
-        Settings.System.putInt(this.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0); // turn off auto rotation
-
-        try {
-            prexistingRotation = Settings.System.getInt(this.getContentResolver(), Settings.System.USER_ROTATION);
-            preexitingScreenSleep = getWindow().getAttributes().flags;
-
-        } catch (Settings.SettingNotFoundException e) {
-
-
-
-            System.out.println("setting not found");
-        }
-        Settings.System.putInt(this.getContentResolver(), Settings.System.USER_ROTATION, 1);  // 1 locks to david's NEW prefered orientation
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
+       setrotation();
         context = getApplicationContext();
 
         // for Achart engine
@@ -155,7 +142,7 @@ public class MainActivity extends Activity {
         mRenderer.setYAxisMin(MIN_HEART_RATE);
         mRenderer.setYAxisMax(MAX_HEART_RATE);
 
-        mRenderer.setLabelsTextSize(20);
+        mRenderer.setLabelsTextSize(LABELTEXTSIZE);
         renderer.setFillPoints(true);
         renderer.setLineWidth(2);
 
@@ -165,13 +152,13 @@ public class MainActivity extends Activity {
         mRenderer.setShowGrid(true);
         mRenderer.setGridColor(gridcolor);
         mRenderer.setXLabels(11);
-        mRenderer.setYLabels(20);
+        mRenderer.setYLabels(5);
 
-        mRenderer.setAxisTitleTextSize(16);
-        mRenderer.setChartTitleTextSize(20);
-        mRenderer.setLabelsTextSize(15);
+        mRenderer.setAxisTitleTextSize(25);
+        mRenderer.setChartTitleTextSize(30);
+        mRenderer.setLabelsTextSize(20);
         mRenderer.setLegendTextSize(15);
-        mRenderer.setPointSize(5f);
+        mRenderer.setPointSize(2f);
         mRenderer.setMargins(new int[]{20, 30, 15, 0});
 
         mRenderer.setYLabelsAlign(Align.RIGHT);
@@ -205,9 +192,9 @@ public class MainActivity extends Activity {
 
     // method used for debugging.  tagging with lp_dbg makes it easier to find if logcat gets messy
     public void dbg(String s) {
-        System.out.println("lp_dbg   " + s);
-    }
 
+        if (testmode) System.out.println("lp_dbg   " + s);
+    }
     public void displayBattery(int batterylevel) {
         this.batterylevel = batterylevel;
         ((TextView) findViewById(R.id.batterylabel)).setText("batt:" + batterylevel);
@@ -265,6 +252,9 @@ public class MainActivity extends Activity {
 
     // eliminate back button from closing app
     public void onBackPressed() {
+  // maybe make this work on a confirmation or several presses near the same time.
+        // at this point however, I have a user who wants the app to run without accidentally closing it and this is very critical to him.
+
     }
 
     @Override
@@ -285,7 +275,7 @@ public class MainActivity extends Activity {
     public void onPause() {
         super.onPause();  // Always call the superclass method first
 
-        Settings.System.putInt(this.getContentResolver(), Settings.System.USER_ROTATION, prexistingRotation);  // 1 locks to david's NEW prefered orientation
+//        Settings.System.putInt(this.getContentResolver(), Settings.System.USER_ROTATION, prexistingRotation);  // 1 locks to david's NEW prefered orientation
 
 //    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -296,7 +286,34 @@ public class MainActivity extends Activity {
     public void onResume()
     {
         super.onResume();
-        Settings.System.putInt(this.getContentResolver(), Settings.System.USER_ROTATION, 1);  // 1 locks to david's NEW prefered orientation
+        setrotation();
+
+    }
+
+    private void setrotation() {
+// stubbing out.  we are trying to do this in activity manifest now.
+
+        /*
+        // Set screen to landscape mode and try to keep device powered on
+        Settings.System.putInt(this.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0); // turn off auto rotation
+
+        try {
+            prexistingRotation = Settings.System.getInt(this.getContentResolver(), Settings.System.USER_ROTATION);
+            preexitingScreenSleep = getWindow().getAttributes().flags;
+
+        } catch (Settings.SettingNotFoundException e) {
+
+
+
+            System.out.println("setting not found");
+        }
+        //     Settings.System.putInt(this.getContentResolver(), Settings.System.USER_ROTATION, 1);  // 1 locks to david's NEW prefered orientation
+        Settings.System.putInt(this.getContentResolver(), Settings.System.USER_ROTATION, 0);  // 1 locks to Richards prefered orientation
+
+
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+*/
 
     }
 
