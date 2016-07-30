@@ -17,10 +17,15 @@
         android:label="Arrhythmia Monitor"
   >
         <activity
+
+            android:screenOrientation="landscape"
             android:name="com.hrvresearch.realtime_beattobeat_arrhythmia_monitor.MainActivity"
             android:keepScreenOn="true"
             android:label="Arrhythmia Monitor" >
             //android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+            //android:screenOrientation="landscape"  - added by LP
+
+
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
